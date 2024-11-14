@@ -4,12 +4,15 @@ function Profile() {
   const [profiles, setProfiles] = useState([]);
   const [name, setName] = useState("");
   const [availability, setAvailability] = useState("");
+  const [error, setError] = useState("");
 
   const handleSave = () => {
     if (!name || !availability) {
-      alert("Please fill out both fields.");
+      setError("Please fill out both fields.");
       return;
     }
+
+    setError("");
 
     setProfiles([...profiles, { id: profiles.length + 1, name, availability }]);
     setName("");
