@@ -28,6 +28,8 @@ function Profile() {
   return (
     <div>
       <h2>Profiles</h2>
+      {error && <div className="error">{error}</div>}
+
       <div>
         <label>
           Name:
