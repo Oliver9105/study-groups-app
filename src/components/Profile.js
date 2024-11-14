@@ -14,6 +14,27 @@ function Profile() {
   return (
     <div>
       <h2>Profiles</h2>
+      <div>
+        <label>
+          Name:
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Availability:
+          <input
+            type="text"
+            value={availability}
+            onChange={(e) => setAvailability(e.target.value)}
+          />
+        </label>
+      </div>
+
       <ul>
         {profiles.map((profile) => (
           <li key={profile.id}>{profile.name}</li>
