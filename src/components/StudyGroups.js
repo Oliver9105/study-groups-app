@@ -19,7 +19,27 @@ function StudyGroups() {
   return (
     <div className="container">
       <h2>Study Groups</h2>
-      
+      <ul>
+        {groups.map((group) => (
+          <li key={group.id}>
+            <h3>{group.name}</h3>
+            <p>Members:</p>
+            <ul>
+              {group.members.length > 0 ? (
+                group.members.map((member) => (
+                  <li key={member.id}>
+                    {member.name} - Subjects: {member.subjects.join(", ")} -
+                    Availability: {member.availability}
+                  </li>
+                ))
+              ) : (
+                <li>No members in this group</li>
+              )}
+            </ul>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
