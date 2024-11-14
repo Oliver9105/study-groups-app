@@ -6,6 +6,7 @@ import Profile from './components/Profile';
 import StudyGroups from './components/StudyGroups';
 import Subjects from './components/Subjects';
 import './App.css';
+import NewSchedule from './components/NewSchedule';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/study-groups" element={<StudyGroups />} />
           <Route path="/subjects" element={<Subjects />} />
+          <Route path="/schedule" element={<NewSchedule />} />
         </Routes>
       </div>
     </Router>
