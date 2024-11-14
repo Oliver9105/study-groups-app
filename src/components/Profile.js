@@ -5,6 +5,7 @@ function Profile() {
   const [name, setName] = useState("");
   const [availability, setAvailability] = useState("");
   const [error, setError] = useState("");
+  const [selectedSubjects, setSelectedSubjects] = useState([]);
 
   const handleSave = () => {
     if (!name || !availability) {
@@ -50,6 +51,23 @@ function Profile() {
           />
         </label>
       </div>
+      <div>
+  <label>
+    Subjects:
+    <select
+      multiple
+      value={selectedSubjects}
+      onChange={(e) => setSelectedSubjects(Array.from(e.target.selectedOptions, option => option.value))}
+    >
+      
+      <option value="Math">Math</option>
+      <option value="Science">Science</option>
+      <option value="History">History</option>
+      <option value="English">English</option>
+    </select>
+  </label>
+</div>
+
       <button onClick={handleSave}>Save Profile</button>
 
       <ul>
