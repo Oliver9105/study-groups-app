@@ -38,6 +38,44 @@ function NewSchedule() {
   return (
     <div className="container">
       <h2>Schedule</h2>
+
+      <div>
+        <label>
+          Study Partner:
+          <input
+            type="text"
+            value={session.partner}
+            onChange={(e) =>
+              setSession({ ...session, partner: e.target.value })
+            }
+          />
+        </label>
+      </div>
+
+      <div>
+        <label>
+          Time:
+          <input
+            type="text"
+            value={session.time}
+            onChange={(e) => setSession({ ...session, time: e.target.value })}
+          />
+        </label>
+      </div>
+
+      <button onClick={handleSchedule}>Schedule Session</button>
+
+      <ul>
+        {sessions.length > 0 ? (
+          sessions.map((s) => (
+            <li key={s.id}>
+              {s.partner} - {s.time}
+            </li>
+          ))
+        ) : (
+          <li>No sessions scheduled</li>
+        )}
+      </ul>
     </div>
   );
 }
