@@ -5,6 +5,17 @@ function Profile() {
   const [name, setName] = useState("");
   const [availability, setAvailability] = useState("");
 
+  const handleSave = () => {
+    if (!name || !availability) {
+      alert("Please fill out both fields.");
+      return;
+    }
+
+    setProfiles([...profiles, { id: profiles.length + 1, name, availability }]);
+    setName("");
+    setAvailability("");
+  };
+
   useEffect(() => {
     fetch("http://localhost:5000/profiles")
       .then((response) => response.json())
@@ -34,6 +45,7 @@ function Profile() {
           />
         </label>
       </div>
+      <button onClick={handleSave}>Save Profile</button>
 
       <ul>
         {profiles.map((profile) => (
