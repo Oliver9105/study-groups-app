@@ -16,6 +16,21 @@ function StudyGroups() {
     fetchGroups();
   }, []);
 
+  const handleDelete = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:5000/groups/${id}`, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        setGroups(groups.filter((group) => group.id !== id));
+      } else {
+        console.error("Failed to delete group");
+      }
+    } catch (error) {
+      console.error("Error deleting group:", error);
+    }
+  };
+
   return (
     <div className="container">
       <h2>Study Groups</h2>
@@ -36,6 +51,7 @@ function StudyGroups() {
                 <li>No members in this group</li>
               )}
             </ul>
+            <button onClick={() => handleDelete(group.id)}>Delete Group</button>
           </li>
         ))}
       </ul>
