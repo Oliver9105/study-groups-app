@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 
 function StudyGroups() {
+  const [groups, setGroups] = useState([]);
+
+  useEffect(() => {}, []);
+
   return (
     <div className="container">
       <h2>Study Groups</h2>
