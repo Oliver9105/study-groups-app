@@ -8,16 +8,25 @@ function Profile() {
   const [selectedSubjects, setSelectedSubjects] = useState([]);
 
   const handleSave = () => {
-    if (!name || !availability) {
-      setError("Please fill out both fields.");
+    if (!name || !availability || selectedSubjects.length === 0) {
+      setError("Please fill out all fields and select at least one subject.");
       return;
     }
 
     setError("");
 
-    setProfiles([...profiles, { id: profiles.length + 1, name, availability }]);
+    setProfiles([
+      ...profiles,
+      {
+        id: profiles.length + 1,
+        name,
+        availability,
+        subjects: selectedSubjects,
+      },
+    ]);
     setName("");
     setAvailability("");
+    setSelectedSubjects([]);
   };
 
   useEffect(() => {
@@ -51,22 +60,36 @@ function Profile() {
           />
         </label>
       </div>
+
       <div>
-  <label>
-    Subjects:
-    <select
-      multiple
-      value={selectedSubjects}
-      onChange={(e) => setSelectedSubjects(Array.from(e.target.selectedOptions, option => option.value))}
-    >
-      
-      <option value="Math">Math</option>
-      <option value="Science">Science</option>
-      <option value="History">History</option>
-      <option value="English">English</option>
-    </select>
-  </label>
-</div>
+        <label>
+          Subjects:
+          <select
+            multiple
+            value={selectedSubjects}
+            onChange={(e) =>
+              setSelectedSubjects(
+                Array.from(e.target.selectedOptions, (option) => option.value)
+              )
+            }
+          >
+            <option value="Math">Math</option>
+            <option value="Science">Science</option>
+            <option value="History">History</option>
+            <option value="English">English</option>
+          </select>
+        </label>
+      </div>
+      {selectedSubjects.length > 0 && (
+        <div>
+          <h4>Selected Subjects:</h4>
+          <ul>
+            {selectedSubjects.map((subject, index) => (
+              <li key={index}>{subject}</li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       <button onClick={handleSave}>Save Profile</button>
 
