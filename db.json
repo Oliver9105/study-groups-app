@@ -1,0 +1,105 @@
+{
+  "profiles": [
+    {
+      "id": 1,
+      "name": "Alice",
+      "subjects": ["Math", "Science"],
+      "availability": "Morning"
+    },
+    {
+      "id": 2,
+      "name": "Bob",
+      "subjects": ["History", "English"],
+      "availability": "Afternoon"
+    },
+    {
+      "id": 3,
+      "name": "Charlie",
+      "subjects": ["Math", "History"],
+      "availability": "Evening"
+    },
+    {
+      "id": 4,
+      "name": "David",
+      "subjects": ["Science", "English"],
+      "availability": "Morning"
+    },
+    {
+      "id": 5,
+      "name": "Kennedy",
+      "subjects": ["Math", "Science"],
+      "availability": "Afternoon"
+    }
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "name": "Science Group Morning",
+      "category": "Science",
+      "availability": "Morning",
+      "members": [
+        {
+          "id": 1,
+          "name": "Alice",
+          "subjects": ["Math", "Science"],
+          "availability": "Morning"
+        },
+        {
+          "id": 4,
+          "name": "David",
+          "subjects": ["Science", "English"],
+          "availability": "Morning"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Math Group Afternoon",
+      "category": "Math",
+      "availability": "Afternoon",
+      "members": [
+        {
+          "id": 5,
+          "name": "Kennedy",
+          "subjects": ["Math", "Science"],
+          "availability": "Afternoon"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "History Group Afternoon",
+      "category": "History",
+      "availability": "Afternoon",
+      "members": [
+        {
+          "id": 2,
+          "name": "Bob",
+          "subjects": ["History", "English"],
+          "availability": "Afternoon"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "English Group Evening",
+      "category": "English",
+      "availability": "Evening",
+      "members": [
+        {
+          "id": 3,
+          "name": "Charlie",
+          "subjects": ["Math", "History"],
+          "availability": "Evening"
+        }
+      ]
+    }
+  ],
+  "subjects": [
+    { "id": 1, "name": "Math" },
+    { "id": 2, "name": "Science" },
+    { "id": 3, "name": "History" },
+    { "id": 4, "name": "English" }
+  ],
+  "sessions": []
+}
