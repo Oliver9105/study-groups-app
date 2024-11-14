@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 
 function Profile() {
   const [profiles, setProfiles] = useState([]);
+  const [name, setName] = useState("");
+  const [availability, setAvailability] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:5000/profiles")
