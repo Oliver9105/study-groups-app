@@ -1,9 +1,22 @@
-import React from "react";
+import { useState, useEffect } from "react";
 
 function Profile() {
+  const [profiles, setProfiles] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/profiles")
+      .then((response) => response.json())
+      .then((data) => setProfiles(data));
+  }, []);
+
   return (
-    <div className="container">
-      <h2>Profile</h2>
+    <div>
+      <h2>Profiles</h2>
+      <ul>
+        {profiles.map((profile) => (
+          <li key={profile.id}>{profile.name}</li>
+        ))}
+      </ul>
     </div>
   );
 }
