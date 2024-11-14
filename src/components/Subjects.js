@@ -1,10 +1,23 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from "react";
 
 function Subjects() {
+  const [subjects, setSubjects] = useState([]);
+  const [newSubject, setNewSubject] = useState("");
+
   return (
     <div className="container">
       <h2>Subjects</h2>
-      {/* Subjects list and functionality will go here */}
+      <div>
+        <label>
+          Add New Subject:
+          <input
+            type="text"
+            value={newSubject}
+            onChange={(e) => setNewSubject(e.target.value)}
+          />
+        </label>
+        <button>Add Subject</button>
+      </div>
     </div>
   );
 }
