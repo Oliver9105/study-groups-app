@@ -56,7 +56,7 @@ function Subjects() {
             onChange={(e) => setNewSubject(e.target.value)}
           />
         </label>
-        <button>Add Subject</button>
+        <button onClick={handleAddSubject}>Add Subject</button>
       </div>
       <ul>
         {subjects.map((subject) => (
