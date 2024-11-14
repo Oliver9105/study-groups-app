@@ -14,6 +14,32 @@ function Subjects() {
     }
   };
 
+  const handleAddSubject = async () => {
+    if (
+      newSubject &&
+      !subjects.some((subject) => subject.name === newSubject)
+    ) {
+      try {
+        const response = await fetch("http://localhost:5000/subjects", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id: subjects.length + 1, name: newSubject }),
+        });
+        if (response.ok) {
+          const addedSubject = await response.json();
+          setSubjects([...subjects, addedSubject]);
+          setNewSubject("");
+        } else {
+          console.error("Failed to add subject");
+        }
+      } catch (error) {
+        console.error("Error adding subject:", error);
+      }
+    }
+  };
+
   useEffect(() => {
     fetchSubjects();
   }, []);
