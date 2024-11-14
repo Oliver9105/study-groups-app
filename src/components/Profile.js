@@ -96,9 +96,8 @@ function Profile() {
       <ul>
         {profiles.map((profile) => (
           <li key={profile.id}>
-            {profile.name} - Availability: {profile.availability}
-            <br />
-            Subjects: {profile.subjects.join(", ")}
+            {profile.name} - Availability: {profile.availability} - Subjects:{" "}
+            {profile.subjects.join(", ")}
           </li>
         ))}
       </ul>
