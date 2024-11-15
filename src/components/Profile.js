@@ -6,6 +6,7 @@ function Profile() {
   const [availability, setAvailability] = useState("");
   const [error, setError] = useState("");
   const [selectedSubjects, setSelectedSubjects] = useState([]);
+  const [subjects, setSubjects] = useState([]);
 
   const handleSave = () => {
     if (!name || !availability || selectedSubjects.length === 0) {
@@ -28,8 +29,18 @@ function Profile() {
     setAvailability("");
     setSelectedSubjects([]);
   };
-
   useEffect(() => {
+    const fetchSubjects = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/subjects");
+        const data = await response.json();
+        setSubjects(data);
+      } catch (error) {
+        console.error("Error fetching subjects:", error);
+      }
+    };
+
+    fetchSubjects();
     fetch("http://localhost:5000/profiles")
       .then((response) => response.json())
       .then((data) => setProfiles(data));
@@ -77,6 +88,12 @@ function Profile() {
             <option value="Science">Science</option>
             <option value="History">History</option>
             <option value="English">English</option>
+            {subjects.map((subject) => (
+  <option key={subject.id} value={subject.name}>
+    {subject.name}
+  </option>
+))}
+
           </select>
         </label>
       </div>
