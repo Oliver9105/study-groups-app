@@ -35,6 +35,21 @@ function NewSchedule() {
     }
   };
 
+  const handleDelete = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:5000/sessions/${id}`, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        setSessions(sessions.filter((session) => session.id !== id));
+      } else {
+        console.error("Failed to delete session");
+      }
+    } catch (error) {
+      console.error("Error deleting session:", error);
+    }
+  };
+
   return (
     <div className="container">
       <h2>Schedule</h2>
@@ -70,6 +85,7 @@ function NewSchedule() {
           sessions.map((s) => (
             <li key={s.id}>
               {s.partner} - {s.time}
+              <button onClick={() => handleDelete(s.id)}>Delete</button>
             </li>
           ))
         ) : (

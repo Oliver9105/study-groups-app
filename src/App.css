@@ -1,8 +1,8 @@
 body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f8f9fa;
-  color: #2E2E2E;
+  color: #2e2e2e;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,7 +10,6 @@ body {
   min-height: 100vh;
 }
 
-/* Container styles */
 .container {
   display: flex;
   flex-direction: column;
@@ -24,17 +23,17 @@ body {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
-h1, h2 {
-  color: #3e0567; 
+h1,
+h2 {
+  color: #3e0567;
 }
 
 h3 {
-  color: #2E2E2E; /* Dark Gray */
+  color: #2e2e2e;
 }
 
-/* Header styles */
 .header {
-  background-color: #FF4500; /* Orangered */
+  background-color: #ff4500;
   color: white;
   padding: 20px 0;
   text-align: center;
@@ -65,9 +64,8 @@ h3 {
   text-decoration: underline;
 }
 
-/* Button styles */
 button {
-  background-color: #008080; /* Teal */
+  background-color: #008080;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -79,10 +77,9 @@ button {
 }
 
 button:hover {
-  background-color: #40E0D0; /* Turquoise */
+  background-color: #40e0d0;
 }
 
-/* Form styles */
 label {
   display: block;
   margin: 10px 0 5px;
@@ -100,10 +97,9 @@ input[type="text"] {
 }
 
 input[type="text"]:focus {
-  border-color: #1E3A5F; /* Deep Blue */
+  border-color: #1e3a5f;
 }
 
-/* List styles */
 ul {
   list-style-type: none;
   padding: 0;
@@ -125,7 +121,7 @@ li:hover {
 }
 
 li button {
-  background-color: #DC3545; /* Bootstrap Red */
+  background-color: #dc3545;
   border: none;
   color: white;
   padding: 8px 16px;
@@ -136,5 +132,5 @@ li button {
 }
 
 li button:hover {
-  background-color: #c82333; /* Dark Red */
+  background-color: #c82333;
 }

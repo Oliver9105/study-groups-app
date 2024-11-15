@@ -3,32 +3,74 @@
     {
       "id": 1,
       "name": "Alice",
-      "subjects": ["Math", "Science"],
+      "subjects": [
+        "Math",
+        "Science"
+      ],
       "availability": "Morning"
     },
     {
       "id": 2,
       "name": "Bob",
-      "subjects": ["History", "English"],
+      "subjects": [
+        "History",
+        "English"
+      ],
       "availability": "Afternoon"
     },
     {
       "id": 3,
       "name": "Charlie",
-      "subjects": ["Math", "History"],
+      "subjects": [
+        "Math",
+        "History"
+      ],
       "availability": "Evening"
     },
     {
       "id": 4,
       "name": "David",
-      "subjects": ["Science", "English"],
+      "subjects": [
+        "Science",
+        "English"
+      ],
       "availability": "Morning"
     },
     {
       "id": 5,
       "name": "Kennedy",
-      "subjects": ["Math", "Science"],
+      "subjects": [
+        "Math",
+        "Science"
+      ],
       "availability": "Afternoon"
+    },
+    {
+      "name": "Kk",
+      "subjects": [
+        "Math",
+        "Science"
+      ],
+      "availability": "Morning",
+      "id": 6
+    },
+    {
+      "name": "mm ",
+      "subjects": [
+        "History",
+        "English"
+      ],
+      "availability": "Morning",
+      "id": 7
+    },
+    {
+      "name": "ffs",
+      "subjects": [
+        "Math",
+        "Science"
+      ],
+      "availability": "AFternoon",
+      "id": 8
     }
   ],
   "groups": [
@@ -41,14 +83,29 @@
         {
           "id": 1,
           "name": "Alice",
-          "subjects": ["Math", "Science"],
+          "subjects": [
+            "Math",
+            "Science"
+          ],
           "availability": "Morning"
         },
         {
           "id": 4,
           "name": "David",
-          "subjects": ["Science", "English"],
+          "subjects": [
+            "Science",
+            "English"
+          ],
           "availability": "Morning"
+        },
+        {
+          "name": "Kk",
+          "subjects": [
+            "Math",
+            "Science"
+          ],
+          "availability": "Morning",
+          "id": 6
         }
       ]
     },
@@ -61,7 +118,10 @@
         {
           "id": 5,
           "name": "Kennedy",
-          "subjects": ["Math", "Science"],
+          "subjects": [
+            "Math",
+            "Science"
+          ],
           "availability": "Afternoon"
         }
       ]
@@ -75,7 +135,10 @@
         {
           "id": 2,
           "name": "Bob",
-          "subjects": ["History", "English"],
+          "subjects": [
+            "History",
+            "English"
+          ],
           "availability": "Afternoon"
         }
       ]
@@ -89,17 +152,32 @@
         {
           "id": 3,
           "name": "Charlie",
-          "subjects": ["Math", "History"],
+          "subjects": [
+            "Math",
+            "History"
+          ],
           "availability": "Evening"
         }
       ]
     }
   ],
   "subjects": [
-    { "id": 1, "name": "Math" },
-    { "id": 2, "name": "Science" },
-    { "id": 3, "name": "History" },
-    { "id": 4, "name": "English" }
+    {
+      "id": 1,
+      "name": "Math"
+    },
+    {
+      "id": 2,
+      "name": "Science"
+    },
+    {
+      "id": 3,
+      "name": "History"
+    },
+    {
+      "id": 4,
+      "name": "English"
+    }
   ],
   "sessions": []
 }

@@ -1,56 +1,136 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import "../App.css";
 
 function Profile() {
   const [profiles, setProfiles] = useState([]);
   const [name, setName] = useState("");
-  const [availability, setAvailability] = useState("");
-  const [error, setError] = useState("");
   const [selectedSubjects, setSelectedSubjects] = useState([]);
+  const [availability, setAvailability] = useState("");
   const [subjects, setSubjects] = useState([]);
+  const [error, setError] = useState("");
 
-  const handleSave = () => {
-    if (!name || !availability || selectedSubjects.length === 0) {
-      setError("Please fill out all fields and select at least one subject.");
+  const fetchSubjects = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/subjects");
+      const data = await response.json();
+      setSubjects(data);
+    } catch (error) {
+      console.error("Error fetching subjects:", error);
+    }
+  };
+
+  const fetchProfiles = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/profiles");
+      const data = await response.json();
+      setProfiles(data);
+    } catch (error) {
+      console.error("Error fetching profiles:", error);
+    }
+  };
+
+  const fetchGroups = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/groups");
+      return await response.json();
+    } catch (error) {
+      console.error("Error fetching groups:", error);
+      return [];
+    }
+  };
+
+  const handleSave = async () => {
+    if (!name || !selectedSubjects.length || !availability) {
+      setError("All fields are required.");
       return;
     }
-
     setError("");
+    const newProfile = { name, subjects: selectedSubjects, availability };
+    try {
+      const response = await fetch("http://localhost:5000/profiles", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newProfile),
+      });
 
-    setProfiles([
-      ...profiles,
-      {
-        id: profiles.length + 1,
-        name,
-        availability,
-        subjects: selectedSubjects,
-      },
-    ]);
-    setName("");
-    setAvailability("");
-    setSelectedSubjects([]);
-  };
-  useEffect(() => {
-    const fetchSubjects = async () => {
-      try {
-        const response = await fetch("http://localhost:5000/subjects");
-        const data = await response.json();
-        setSubjects(data);
-      } catch (error) {
-        console.error("Error fetching subjects:", error);
+      if (response.ok) {
+        const addedProfile = await response.json();
+        setProfiles([...profiles, addedProfile]);
+        setName("");
+        setSelectedSubjects([]);
+        setAvailability("");
+
+        console.log("Profile added:", addedProfile);
+        await addToGroups(addedProfile);
+
+        console.log("Profile saved and added to group");
+      } else {
+        console.error("Failed to save profile");
       }
-    };
+    } catch (error) {
+      console.error("Error saving profile:", error);
+    }
+  };
 
+  const addToGroups = async (profile) => {
+    try {
+      const groups = await fetchGroups();
+      profile.subjects.forEach(async (subject) => {
+        let group = groups.find(
+          (g) =>
+            g.category === subject && g.availability === profile.availability
+        );
+        if (!group) {
+          const newGroup = {
+            name: `${subject} Group ${profile.availability}`,
+            category: subject,
+            availability: profile.availability,
+            members: [profile],
+          };
+          const groupResponse = await fetch("http://localhost:5000/groups", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newGroup),
+          });
+          group = await groupResponse.json();
+          console.log("New group created:", group);
+        } else {
+          group.members.push(profile);
+          await fetch(`http://localhost:5000/groups/${group.id}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(group),
+          });
+          console.log("Profile added to existing group:", group);
+        }
+      });
+    } catch (error) {
+      console.error("Error adding profile to groups:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchProfiles();
     fetchSubjects();
-    fetch("http://localhost:5000/profiles")
-      .then((response) => response.json())
-      .then((data) => setProfiles(data));
   }, []);
 
-  return (
-    <div>
-      <h2>Profiles</h2>
-      {error && <div className="error">{error}</div>}
+  const handleSubjectChange = (event) => {
+    const value = Array.from(
+      event.target.selectedOptions,
+      (option) => option.value
+    );
+    setSelectedSubjects(value);
+  };
 
+  return (
+    <div className="container">
+      <h2>Profiles</h2>
       <div>
         <label>
           Name:
@@ -63,6 +143,22 @@ function Profile() {
       </div>
       <div>
         <label>
+          Subjects:
+          <select
+            multiple
+            value={selectedSubjects}
+            onChange={handleSubjectChange}
+          >
+            {subjects.map((subject) => (
+              <option key={subject.id} value={subject.name}>
+                {subject.name}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
+      <div>
+        <label>
           Availability:
           <input
             type="text"
@@ -71,49 +167,14 @@ function Profile() {
           />
         </label>
       </div>
-
-      <div>
-        <label>
-          Subjects:
-          <select
-            multiple
-            value={selectedSubjects}
-            onChange={(e) =>
-              setSelectedSubjects(
-                Array.from(e.target.selectedOptions, (option) => option.value)
-              )
-            }
-          >
-            <option value="Math">Math</option>
-            <option value="Science">Science</option>
-            <option value="History">History</option>
-            <option value="English">English</option>
-            {subjects.map((subject) => (
-  <option key={subject.id} value={subject.name}>
-    {subject.name}
-  </option>
-))}
-
-          </select>
-        </label>
-      </div>
-      {selectedSubjects.length > 0 && (
-        <div>
-          <h4>Selected Subjects:</h4>
-          <ul>
-            {selectedSubjects.map((subject, index) => (
-              <li key={index}>{subject}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-
+      {error && <p style={{ color: "red" }}>{error}</p>}
       <button onClick={handleSave}>Save Profile</button>
 
+      <h3>Existing Profiles:</h3>
       <ul>
         {profiles.map((profile) => (
           <li key={profile.id}>
-            {profile.name} - Subjects: {profile.subjects?.join(", ")} -
+            {profile.name} - Subjects: {profile.subjects.join(", ")} -
             Availability: {profile.availability}
           </li>
         ))}
