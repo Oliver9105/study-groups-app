@@ -13,7 +13,11 @@ By Oliver (Oliver9105)
 Study Buddy is a minimalist application that demonstrates core React concepts including components, state management, and routing with React Router. Users can create profiles, join or form study groups, schedule study sessions, and manage subjects. This project serves as a learning tool for mastering React development.
 
 ## Screenshot
+## Screenshot
 
+![Study Buddy App Screenshot](./assets/Screenshot%20from%202024-11-17%2010-40-36.png)
+
+## Features
 ## Features
 
 - Home page displaying a welcome message and navigation links.
