@@ -1,74 +1,110 @@
-<<<<<<< HEAD
-# study-groups-app
-=======
-# Getting Started with Create React App
+# Project Title
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A brief description of what this project does and who it's for
 
-## Available Scripts
+# Study Buddy App
 
-In the project directory, you can run:
+A web application designed to help students manage their study groups, schedules, and subjects efficiently, built using React.
 
-### `npm start`
+By Oliver (Oliver9105)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Description
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Study Buddy is a minimalist application that demonstrates core React concepts including components, state management, and routing with React Router. Users can create profiles, join or form study groups, schedule study sessions, and manage subjects. This project serves as a learning tool for mastering React development.
 
-### `npm test`
+## Screenshot
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features
 
-### `npm run build`
+- Home page displaying a welcome message and navigation links.
+- User profile creation and management.
+- Study group creation and member management.
+- Scheduling study sessions with study partners.
+- Adding and managing subjects.
+- Responsive and clean UI design.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## How to Use
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Requirements
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- A computer, tablet, or phone.
+- Access to the internet.
+- A modern web browser.
 
-### `npm run eject`
+### View Live Site
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Visit the deployed application at: [Study Buddy App](https://merry-quokka-6a4b71.netlify.app)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The live site allows you to:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Browse and create profiles.
+- Form and join study groups.
+- Schedule and manage study sessions.
+- Add and manage subjects.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Local Development
 
-## Learn More
+If you want to run the project locally, you'll need:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Node.js installed on your computer.
+- Basic understanding of React JS.
+- Code editor (VS Code recommended).
+- Terminal/Command Line.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Installation Process
 
-### Code Splitting
+1. Clone this repository using:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+   ```sh
+   git clone https://github.com/Oliver9105/study-groups-app.git
+   ```
 
-### Analyzing the Bundle Size
+   or by downloading a ZIP file of the code.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+2. Navigate to the project directory:
 
-### Making a Progressive Web App
+   ```sh
+   cd study-buddy
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+3. Install the required dependencies:
 
-### Advanced Configuration
+   ```sh
+   npm install
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+4. Run the JSON Server:
 
-### Deployment
+   ```sh
+   json-server --watch db.json --port 5000
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+5. Run the development server:
 
-### `npm run build` fails to minify
+   ```sh
+   npm start
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
->>>>>>> 3cbd8ff (Initialize project using Create React App)
+6. Open your browser and visit `http://localhost:3000`
+
+## Technologies Used
+
+- React JS
+- JSON Server
+- CSS3
+- JavaScript (ES6)
+
+## Backend API
+
+- **Repository**: [Backend API Repository](https://github.com/Oliver9105/study-groups-app)
+- **Deployed API**: [Live API URL](https://merry-quokka-6a4b71.netlify.app/.netlify/functions/hello)
+
+## Support and Contact Details
+
+If you have any questions, suggestions, or need assistance, please contact:
+
+- Email: your-email@example.com
+
+## License
+
+MIT License
