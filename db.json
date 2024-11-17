@@ -177,6 +177,10 @@
     {
       "id": 4,
       "name": "English"
+    },
+    {
+      "id": 5,
+      "name": "Agriculture"
     }
   ],
   "sessions": []
