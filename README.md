@@ -13,11 +13,13 @@ By Oliver (Oliver9105)
 Study Buddy is a minimalist application that demonstrates core React concepts including components, state management, and routing with React Router. Users can create profiles, join or form study groups, schedule study sessions, and manage subjects. This project serves as a learning tool for mastering React development.
 
 ## Screenshot
+
 ## Screenshot
 
 ![Study Buddy App Screenshot](./assets/Screenshot%20from%202024-11-17%2010-40-36.png)
 
 ## Features
+
 ## Features
 
 - Home page displaying a welcome message and navigation links.
@@ -101,7 +103,7 @@ If you want to run the project locally, you'll need:
 ## Backend API
 
 - **Repository**: [Backend API Repository](https://github.com/Oliver9105/study-groups-app)
-- **Deployed API**: [Live API URL](merry-quokka-6a4b71.netlify.app)
+- **Deployed API**: [Live API URL](https://merry-quokka-6a4b71.netlify.app)
 
 ## Support and Contact Details
 
@@ -112,3 +114,10 @@ If you have any questions, suggestions, or need assistance, please contact:
 ## License
 
 MIT License
+© 2024 Oliver (Oliver9105)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
