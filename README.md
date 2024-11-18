@@ -101,7 +101,7 @@ If you want to run the project locally, you'll need:
 ## Backend API
 
 - **Repository**: [Backend API Repository](https://github.com/Oliver9105/study-groups-app)
-- **Deployed API**: [Live API URL](https://merry-quokka-6a4b71.netlify.app/.netlify/functions/hello)
+- **Deployed API**: [Live API URL](merry-quokka-6a4b71.netlify.app)
 
 ## Support and Contact Details
 
