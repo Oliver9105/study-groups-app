@@ -107,7 +107,7 @@ If you want to run the project locally, you'll need:
 
 If you have any questions, suggestions, or need assistance, please contact:
 
-- Email: your-email@example.com
+- Email: Olivercher1000@gmail.com
 
 ## License
 
