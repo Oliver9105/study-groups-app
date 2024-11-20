@@ -39,7 +39,7 @@ Study Buddy is a minimalist application that demonstrates core React concepts in
 
 ### View Live Site
 
-Visit the deployed application at: [Study Buddy App](https://merry-quokka-6a4b71.netlify.app)
+Visit the deployed application at: [Study Buddy App](https://studygroups-json-server-1.onrender.com)
 
 The live site allows you to:
 
@@ -102,8 +102,10 @@ If you want to run the project locally, you'll need:
 
 ## Backend API
 
-- **Repository**: [Backend API Repository](https://github.com/Oliver9105/study-groups-app)
-- **Deployed API**: [Live API URL](https://merry-quokka-6a4b71.netlify.app)
+- **Repository**: [Backend API Repository](git@github.com:Oliver9105/studygroups-json-server.git)
+- **Deployed API**: [Live API URL](https://fabulous-daifuku-b1a8fc.netlify.app
+
+)
 
 ## Support and Contact Details
 
