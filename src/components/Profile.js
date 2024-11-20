@@ -11,7 +11,9 @@ function Profile() {
 
   const fetchSubjects = async () => {
     try {
-      const response = await fetch("http://localhost:5000/subjects");
+      const response = await fetch(
+        "https://studygroups-json-server-1.onrender.com/subjects"
+      );
       const data = await response.json();
       setSubjects(data);
     } catch (error) {
@@ -21,7 +23,9 @@ function Profile() {
 
   const fetchProfiles = async () => {
     try {
-      const response = await fetch("http://localhost:5000/profiles");
+      const response = await fetch(
+        "https://studygroups-json-server-1.onrender.com/profiles"
+      );
       const data = await response.json();
       setProfiles(data);
     } catch (error) {
@@ -31,7 +35,9 @@ function Profile() {
 
   const fetchGroups = async () => {
     try {
-      const response = await fetch("http://localhost:5000/groups");
+      const response = await fetch(
+        "https://studygroups-json-server-1.onrender.com/groups"
+      );
       return await response.json();
     } catch (error) {
       console.error("Error fetching groups:", error);
@@ -47,13 +53,16 @@ function Profile() {
     setError("");
     const newProfile = { name, subjects: selectedSubjects, availability };
     try {
-      const response = await fetch("http://localhost:5000/profiles", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newProfile),
-      });
+      const response = await fetch(
+        "https://studygroups-json-server-1.onrender.com/profiles",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newProfile),
+        }
+      );
 
       if (response.ok) {
         const addedProfile = await response.json();
@@ -89,24 +98,30 @@ function Profile() {
             availability: profile.availability,
             members: [profile],
           };
-          const groupResponse = await fetch("http://localhost:5000/groups", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(newGroup),
-          });
+          const groupResponse = await fetch(
+            "https://studygroups-json-server-1.onrender.com/groups",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(newGroup),
+            }
+          );
           group = await groupResponse.json();
           console.log("New group created:", group);
         } else {
           group.members.push(profile);
-          await fetch(`http://localhost:5000/groups/${group.id}`, {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(group),
-          });
+          await fetch(
+            `https://studygroups-json-server-1.onrender.com/groups/${group.id}`,
+            {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(group),
+            }
+          );
           console.log("Profile added to existing group:", group);
         }
       });

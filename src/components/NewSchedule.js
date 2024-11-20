@@ -6,7 +6,9 @@ function NewSchedule() {
   useEffect(() => {
     const fetchSessions = async () => {
       try {
-        const response = await fetch("http://localhost:5000/sessions");
+        const response = await fetch(
+          "https://studygroups-json-server-1.onrender.com/sessions"
+        );
         const data = await response.json();
         setSessions(data);
       } catch (error) {
@@ -17,13 +19,16 @@ function NewSchedule() {
   }, []);
   const handleSchedule = async () => {
     try {
-      const response = await fetch("http://localhost:5000/sessions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(session),
-      });
+      const response = await fetch(
+        "https://studygroups-json-server-1.onrender.com/sessions",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(session),
+        }
+      );
       if (response.ok) {
         const newSession = await response.json();
         setSessions((prevSessions) => [...prevSessions, newSession]);
@@ -37,9 +42,12 @@ function NewSchedule() {
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/sessions/${id}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(
+        `https://studygroups-json-server-1.onrender.com/sessions/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
       if (response.ok) {
         setSessions(sessions.filter((session) => session.id !== id));
       } else {
@@ -95,6 +103,5 @@ function NewSchedule() {
     </div>
   );
 }
-
 
 export default NewSchedule;

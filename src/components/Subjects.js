@@ -6,7 +6,9 @@ function Subjects() {
 
   const fetchSubjects = async () => {
     try {
-      const response = await fetch("http://localhost:5000/subjects");
+      const response = await fetch(
+        "https://studygroups-json-server-1.onrender.com/subjects"
+      );
       const data = await response.json();
       setSubjects(data);
     } catch (error) {
@@ -20,13 +22,16 @@ function Subjects() {
       !subjects.some((subject) => subject.name === newSubject)
     ) {
       try {
-        const response = await fetch("http://localhost:5000/subjects", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ id: subjects.length + 1, name: newSubject }),
-        });
+        const response = await fetch(
+          "https://studygroups-json-server-1.onrender.com/subjects",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ id: subjects.length + 1, name: newSubject }),
+          }
+        );
         if (response.ok) {
           const addedSubject = await response.json();
           setSubjects([...subjects, addedSubject]);

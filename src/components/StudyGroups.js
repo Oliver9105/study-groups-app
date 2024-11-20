@@ -6,7 +6,9 @@ function StudyGroups() {
   useEffect(() => {
     const fetchGroups = async () => {
       try {
-        const response = await fetch("http://localhost:5000/groups");
+        const response = await fetch(
+          "https://studygroups-json-server-1.onrender.com/groups"
+        );
         const data = await response.json();
         setGroups(data);
       } catch (error) {
@@ -18,9 +20,12 @@ function StudyGroups() {
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/groups/${id}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(
+        `https://studygroups-json-server-1.onrender.com/groups/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
       if (response.ok) {
         setGroups(groups.filter((group) => group.id !== id));
       } else {
