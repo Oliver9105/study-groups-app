@@ -102,9 +102,9 @@ If you want to run the project locally, you'll need:
 
 ## Backend API
 
-- **Repository** (Oliver9105/studygroups-json-server)
+- **Repository**: [Backend API Repository](https://github.com/Oliver9105/studygroups-json-server.git)
 
-- **Deployed API** (https://fabulous-daifuku-b1a8fc.netlify.app)
+- **Deployed API** [Live API URL](https://fabulous-daifuku-b1a8fc.netlify.app)
 
 ## Support and Contact Details
 
