@@ -1,33 +1,70 @@
-# Project Title
+# STEMLearn
 
-A brief description of what this project does and who it's for
-
-# Study Buddy App
-
-A web application designed to help students manage their study groups, schedules, and subjects efficiently, built using React.
-
-By Oliver (Oliver9105)
+A web application designed to provide free, accessible, and interactive STEM education to students in Kenya, built using React and Flask.
 
 ## Description
 
-Study Buddy is a minimalist application that demonstrates core React concepts including components, state management, and routing with React Router. Users can create profiles, join or form study groups, schedule study sessions, and manage subjects. This project serves as a learning tool for mastering React development.
+STEMLearn is an online learning platform that bridges the gap in access to quality STEM (Science, Technology, Engineering, and Mathematics) education. It offers structured courses, interactive content, and progress tracking tailored to the Kenyan curriculum. The platform is designed to be free and accessible, ensuring that students from all backgrounds can benefit from high-quality educational resources.
+
+This project demonstrates core React and Flask concepts, including:
+
+- User authentication and role-based access control.
+- Course and lesson management.
+- Interactive quizzes and assignments.
+- Progress tracking and certification.
 
 ## Screenshot
 
-## Screenshot
-
-![Study Buddy App Screenshot](./assets/Screenshot%20from%202024-11-17%2010-40-36.png)
+![STEMLearn Screenshot](path/to/screenshot.png)
 
 ## Features
 
-## Features
+### User Registration and Authentication
 
-- Home page displaying a welcome message and navigation links.
-- User profile creation and management.
-- Study group creation and member management.
-- Scheduling study sessions with study partners.
-- Adding and managing subjects.
-- Responsive and clean UI design.
+- Secure user registration and login with email and password.
+- JWT-based authentication for secure access control.
+- Different user roles: Admin, Teachers, and Students.
+
+### Home & Course Catalog
+
+- Display available STEM courses categorized by subject (Mathematics, Physics, Chemistry, Biology, Computer Science, Engineering, etc.).
+- Search and filter functionality to help students find relevant courses easily.
+
+### Course Pages
+
+- Detailed course descriptions, including syllabus, duration, and learning outcomes.
+- Allow students to enroll in courses.
+- Display a list of lessons and downloadable resources.
+
+### Course Content Delivery
+
+- Support for videos, PDFs, interactive quizzes, and assignments.
+- Structured lesson-by-lesson progression.
+- Discussion section for student-teacher interaction.
+
+### Student Dashboard & Progress Tracking
+
+- Show enrolled courses with completion percentage.
+- Track progress per lesson and module.
+- Display achievements and certificates of completion.
+
+### Admin Dashboard
+
+- Create and manage courses.
+- Add and assign teachers to courses.
+- Enroll students into specific courses manually if needed.
+- Monitor student activity and progress analytics.
+
+### Teacher Dashboard
+
+- Upload course materials (videos, notes, quizzes, and assignments).
+- Track student progress within assigned courses.
+- Provide feedback on assignments and answer student queries.
+
+### Assessments & Certification
+
+- Implement quizzes and assignments for students to test their knowledge.
+- Issue certificates upon successful completion of a course.
 
 ## How to Use
 
@@ -39,83 +76,138 @@ Study Buddy is a minimalist application that demonstrates core React concepts in
 
 ### View Live Site
 
-Visit the deployed application at: [Study Buddy App](https://studygroups-json-server-1.onrender.com)
+Visit the deployed application at: [STEMLearn Live Site](http://example.com)
 
 The live site allows you to:
 
-- Browse and create profiles.
-- Form and join study groups.
-- Schedule and manage study sessions.
-- Add and manage subjects.
+- Browse and enroll in STEM courses.
+- Track your progress and achievements.
+- Access course materials and interact with teachers.
 
-## Local Development
+### Local Development
 
 If you want to run the project locally, you'll need:
 
 - Node.js installed on your computer.
-- Basic understanding of React JS.
+- Python (v3.8 or higher) for the Flask backend.
+- Basic understanding of React and Flask.
 - Code editor (VS Code recommended).
 - Terminal/Command Line.
 
 ### Installation Process
 
-1. Clone this repository using:
+1. Clone this repository:
 
-   ```sh
-   git clone https://github.com/Oliver9105/study-groups-app.git
+   ```bash
+   git clone https://github.com/your-username/stemlearn.git
    ```
-
-   or by downloading a ZIP file of the code.
 
 2. Navigate to the project directory:
 
-   ```sh
-   cd study-buddy
+   ```bash
+   cd stemlearn
    ```
 
-3. Install the required dependencies:
+3. Set up the frontend:
 
-   ```sh
+   ```bash
+   cd frontend
    npm install
    ```
 
-4. Run the JSON Server:
+4. Set up the backend:
 
-   ```sh
-   json-server --watch db.json --port 5000
+   ```bash
+   cd ../backend
+   pip install -r requirements.txt
    ```
 
-5. Run the development server:
+5. Run the development servers:
 
-   ```sh
-   npm start
+   - Start the backend:
+
+     ```bash
+     python app.py
+     ```
+
+   - Start the frontend:
+     ```bash
+     npm start
+     ```
+
+6. Open your browser and visit:
    ```
-
-6. Open your browser and visit `http://localhost:3000`
+   http://localhost:3000
+   ```
 
 ## Technologies Used
 
-- React JS
-- JSON Server
-- CSS3
-- JavaScript (ES6)
+- **Frontend:** React, Tailwind CSS, JavaScript (ES6)
+- **Backend:** Flask, SQLAlchemy, Python
+- **Database:** SQLite (for development)
+- **Authentication:** JWT (JSON Web Tokens)
+- **Deployment:**
+  - Frontend: Netlify
+  - Backend: Render
 
 ## Backend API
 
-- **Repository**: [Backend API Repository](https://github.com/Oliver9105/studygroups-json-server.git)
-
-- **Deployed API** [Live API URL](https://fabulous-daifuku-b1a8fc.netlify.app)
+Repository: [Backend API Repository](http://example.com)
 
 ## Support and Contact Details
 
 If you have any questions, suggestions, or need assistance, please contact:
 
-- Email: Olivercher1000@gmail.com
+- **Email:** your-email@example.com
+- **GitHub:** [your-username](http://github.com/your-username)
+
+## Contributing
+
+If you want to contribute to the project, please follow these steps:
+
+1. Fork this repository:
+
+   - Click the "Fork" button at the top right of this repository to create a copy in your GitHub account.
+
+2. Clone your Fork:
+
+   ```bash
+   git clone https://github.com/your-username/stemlearn.git
+   cd stemlearn
+   ```
+
+3. Create a new branch:
+
+   ```bash
+   git switch -c your_branch_name
+   ```
+
+4. Make your changes:
+
+   - Add new features, fix bugs, or improve documentation.
+
+5. Add and commit your changes:
+
+   ```bash
+   git add .
+   git commit -m "Your commit message"
+   ```
+
+6. Push your changes:
+
+   ```bash
+   git push origin your_branch_name
+   ```
+
+7. Create a new pull request:
+   - Go to the original repository on GitHub.
+   - Click on "Pull Requests" and then "New Pull Request".
+   - Select your branch and provide a clear description of your changes.
+   - Submit the pull request for review.
 
 ## License
 
-MIT License
-© 2024 Oliver (Oliver9105)
+MIT License © 2024 [Your Name] ([Your GitHub Username])
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
