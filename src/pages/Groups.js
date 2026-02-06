@@ -4,7 +4,7 @@ import { useApp } from '../context/AppContext';
 import { initialGroups } from '../mockData';
 
 function Groups() {
-  const { state } = useApp();
+  const { } = useApp();
   const navigate = useNavigate();
   const [groups, setGroups] = useState(initialGroups);
   const [showNotification, setShowNotification] = useState(true);

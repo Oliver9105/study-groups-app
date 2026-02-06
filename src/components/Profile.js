@@ -3,7 +3,7 @@ import { useApp } from '../context/AppContext';
 
 function Profile() {
   const { state, dispatch } = useApp();
-  const [formData, setFormData] = useState({
+  const [formData] = useState({
     name: state.user.name || 'Jane Smith',
     email: state.user.email || '',
     bio: state.user.bio || 'Junior CS Major @ Stanford • Member since 2026',
