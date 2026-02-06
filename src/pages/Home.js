@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { useApp } from '../context/AppContext';
+import { useNavigate } from 'react-router-dom';
 import { initialGroups } from '../mockData';
 import CreateGroup from '../components/CreateGroup';
 
 function Home() {
+  const navigate = useNavigate();
   const [groups, setGroups] = useState(initialGroups);
   const [showCreateForm, setShowCreateForm] = useState(false);
 
@@ -76,7 +77,12 @@ function Home() {
           
           <div className="groups-grid-dashboard">
             {groups.slice(0, 4).map(group => (
-              <div key={group.id} className="group-card-dashboard">
+              <div 
+                key={group.id} 
+                className="group-card-dashboard"
+                onClick={() => navigate(`/group/${group.id}`)}
+                style={{ cursor: 'pointer' }}
+              >
                 <div className="group-header">
                   <div className="group-avatar">
                     <img src="/api/placeholder/40/40" alt={`${group.title} group`} className="avatar-img" />
