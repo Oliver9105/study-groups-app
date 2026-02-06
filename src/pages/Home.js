@@ -3,7 +3,6 @@ import { useApp } from '../context/AppContext';
 import { initialGroups } from '../mockData';
 
 function Home() {
-  const { } = useApp();
   const [groups, setGroups] = useState(initialGroups);
 
   const toggleJoin = (id) => {
