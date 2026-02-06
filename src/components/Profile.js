@@ -12,7 +12,13 @@ function Profile() {
   const [darkMode, setDarkMode] = useState(false);
 
   const handleAddSubject = () => {
-    // Subject adding functionality would go here
+    const subject = prompt('Enter subject name:');
+    if (subject && subject.trim()) {
+      dispatch({
+        type: 'ADD_SUBJECT',
+        payload: subject.trim()
+      });
+    }
   };
 
   const handleRemoveSubject = (subjectToRemove) => {
@@ -163,7 +169,10 @@ function Profile() {
                   <input 
                     type="checkbox" 
                     checked={darkMode} 
-                    onChange={(e) => setDarkMode(e.target.checked)}
+                    onChange={(e) => {
+                      setDarkMode(e.target.checked);
+                      document.body.style.filter = e.target.checked ? 'invert(1) hue-rotate(180deg)' : 'none';
+                    }}
                     style={{ opacity: 0, width: 0, height: 0 }}
                   />
                   <span style={{

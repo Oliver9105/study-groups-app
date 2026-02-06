@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import { initialGroups } from '../mockData';
@@ -6,10 +6,58 @@ import { initialGroups } from '../mockData';
 function GroupDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { state } = useApp();
+  const { state, dispatch } = useApp();
+  const [joined, setJoined] = useState(false);
+  const [showScheduleForm, setShowScheduleForm] = useState(false);
+  const [newSession, setNewSession] = useState({
+    title: '',
+    date: '',
+    time: '',
+    duration: '',
+    location: ''
+  });
   
   const group = initialGroups.find(g => g.id === parseInt(id));
   const groupTopics = state.topics ? state.topics.filter(topic => topic.subject === group?.subject) : [];
+  
+  const handleJoinGroup = () => {
+    if (!state.user.name) {
+      alert('Please create a profile first!');
+      navigate('/profile');
+      return;
+    }
+    setJoined(!joined);
+    if (!joined) {
+      dispatch({
+        type: 'JOIN_GROUP',
+        payload: {
+          groupId: parseInt(id),
+          userName: state.user.name
+        }
+      });
+      alert('Successfully joined the group!');
+    }
+  };
+  
+  const handleScheduleSession = (e) => {
+    e.preventDefault();
+    if (!newSession.title || !newSession.date || !newSession.time) {
+      alert('Please fill in all required fields');
+      return;
+    }
+    
+    dispatch({
+      type: 'ADD_SESSION',
+      payload: {
+        ...newSession,
+        groupId: parseInt(id)
+      }
+    });
+    
+    setNewSession({ title: '', date: '', time: '', duration: '', location: '' });
+    setShowScheduleForm(false);
+    alert('Session scheduled successfully!');
+  };
   
   if (!group) {
     return (
@@ -51,12 +99,116 @@ function GroupDetail() {
           </div>
         </div>
         <div className="group-actions-header">
-          <button className="btn-join-dark">
-            {group.joined ? '✓ Joined' : 'Join Group'}
+          <button className="btn-join-dark" onClick={handleJoinGroup}>
+            {joined || group.joined ? '✓ Joined' : 'Join Group'}
           </button>
-          <button className="btn-schedule-dark">Schedule Session</button>
+          <button className="btn-schedule-dark" onClick={() => setShowScheduleForm(!showScheduleForm)}>
+            {showScheduleForm ? 'Cancel' : 'Schedule Session'}
+          </button>
         </div>
       </div>
+      
+      {/* Schedule Session Form */}
+      {showScheduleForm && (
+        <div className="detail-section" style={{ marginBottom: '2rem' }}>
+          <div className="meeting-card-dark">
+            <h3>Schedule New Session</h3>
+            <form onSubmit={handleScheduleSession}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '1rem' }}>
+                <div>
+                  <label style={{ color: 'white', display: 'block', marginBottom: '0.5rem' }}>Session Title *</label>
+                  <input 
+                    type="text" 
+                    value={newSession.title} 
+                    onChange={(e) => setNewSession({...newSession, title: e.target.value})}
+                    placeholder="e.g., React Hooks Workshop"
+                    required
+                    style={{ 
+                      width: '100%',
+                      padding: '0.5rem',
+                      background: 'rgba(255,255,255,0.1)', 
+                      color: 'white', 
+                      border: '1px solid rgba(255,255,255,0.3)',
+                      borderRadius: '4px'
+                    }}
+                  />
+                </div>
+                <div>
+                  <label style={{ color: 'white', display: 'block', marginBottom: '0.5rem' }}>Date *</label>
+                  <input 
+                    type="date" 
+                    value={newSession.date} 
+                    onChange={(e) => setNewSession({...newSession, date: e.target.value})}
+                    required
+                    style={{ 
+                      width: '100%',
+                      padding: '0.5rem',
+                      background: 'rgba(255,255,255,0.1)', 
+                      color: 'white', 
+                      border: '1px solid rgba(255,255,255,0.3)',
+                      borderRadius: '4px'
+                    }}
+                  />
+                </div>
+                <div>
+                  <label style={{ color: 'white', display: 'block', marginBottom: '0.5rem' }}>Time *</label>
+                  <input 
+                    type="time" 
+                    value={newSession.time} 
+                    onChange={(e) => setNewSession({...newSession, time: e.target.value})}
+                    required
+                    style={{ 
+                      width: '100%',
+                      padding: '0.5rem',
+                      background: 'rgba(255,255,255,0.1)', 
+                      color: 'white', 
+                      border: '1px solid rgba(255,255,255,0.3)',
+                      borderRadius: '4px'
+                    }}
+                  />
+                </div>
+                <div>
+                  <label style={{ color: 'white', display: 'block', marginBottom: '0.5rem' }}>Duration</label>
+                  <input 
+                    type="text" 
+                    value={newSession.duration} 
+                    onChange={(e) => setNewSession({...newSession, duration: e.target.value})}
+                    placeholder="e.g., 2 hours"
+                    style={{ 
+                      width: '100%',
+                      padding: '0.5rem',
+                      background: 'rgba(255,255,255,0.1)', 
+                      color: 'white', 
+                      border: '1px solid rgba(255,255,255,0.3)',
+                      borderRadius: '4px'
+                    }}
+                  />
+                </div>
+                <div style={{ gridColumn: '1 / -1' }}>
+                  <label style={{ color: 'white', display: 'block', marginBottom: '0.5rem' }}>Location</label>
+                  <input 
+                    type="text" 
+                    value={newSession.location} 
+                    onChange={(e) => setNewSession({...newSession, location: e.target.value})}
+                    placeholder="e.g., Library Room A"
+                    style={{ 
+                      width: '100%',
+                      padding: '0.5rem',
+                      background: 'rgba(255,255,255,0.1)', 
+                      color: 'white', 
+                      border: '1px solid rgba(255,255,255,0.3)',
+                      borderRadius: '4px'
+                    }}
+                  />
+                </div>
+              </div>
+              <button type="submit" className="btn-join-meeting-dark" style={{ marginTop: '1rem' }}>
+                Schedule Session
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
 
       {/* Content Grid */}
       <div className="detail-content-grid">

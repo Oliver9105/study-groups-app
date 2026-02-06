@@ -128,6 +128,82 @@ function Schedule() {
                           }}
                         />
                       </div>
+                      
+                      <div>
+                        <label style={{ color: 'white', display: 'block', marginBottom: '0.5rem' }}>Date *</label>
+                        <input 
+                          type="date" 
+                          name="date" 
+                          value={newSession.date} 
+                          onChange={handleInputChange}
+                          required
+                          style={{ 
+                            width: '100%',
+                            padding: '0.5rem',
+                            background: 'rgba(255,255,255,0.1)', 
+                            color: 'white', 
+                            border: '1px solid rgba(255,255,255,0.3)',
+                            borderRadius: '4px'
+                          }}
+                        />
+                      </div>
+                      
+                      <div>
+                        <label style={{ color: 'white', display: 'block', marginBottom: '0.5rem' }}>Time *</label>
+                        <input 
+                          type="time" 
+                          name="time" 
+                          value={newSession.time} 
+                          onChange={handleInputChange}
+                          required
+                          style={{ 
+                            width: '100%',
+                            padding: '0.5rem',
+                            background: 'rgba(255,255,255,0.1)', 
+                            color: 'white', 
+                            border: '1px solid rgba(255,255,255,0.3)',
+                            borderRadius: '4px'
+                          }}
+                        />
+                      </div>
+                      
+                      <div>
+                        <label style={{ color: 'white', display: 'block', marginBottom: '0.5rem' }}>Duration</label>
+                        <input 
+                          type="text" 
+                          name="duration" 
+                          value={newSession.duration} 
+                          onChange={handleInputChange}
+                          placeholder="e.g., 2 hours"
+                          style={{ 
+                            width: '100%',
+                            padding: '0.5rem',
+                            background: 'rgba(255,255,255,0.1)', 
+                            color: 'white', 
+                            border: '1px solid rgba(255,255,255,0.3)',
+                            borderRadius: '4px'
+                          }}
+                        />
+                      </div>
+                      
+                      <div>
+                        <label style={{ color: 'white', display: 'block', marginBottom: '0.5rem' }}>Location</label>
+                        <input 
+                          type="text" 
+                          name="location" 
+                          value={newSession.location} 
+                          onChange={handleInputChange}
+                          placeholder="e.g., Library Room A"
+                          style={{ 
+                            width: '100%',
+                            padding: '0.5rem',
+                            background: 'rgba(255,255,255,0.1)', 
+                            color: 'white', 
+                            border: '1px solid rgba(255,255,255,0.3)',
+                            borderRadius: '4px'
+                          }}
+                        />
+                      </div>
                     </div>
                     
                     <button type="submit" className="btn-join-video" style={{ marginTop: '1rem' }}>
@@ -152,7 +228,11 @@ function Schedule() {
                       <p>{session.date} at {session.time}</p>
                       {session.duration && <p>Duration: {session.duration}</p>}
                       {session.location && <p>Location: {session.location}</p>}
-                      <button className="btn-join-video" style={{ marginTop: '0.5rem' }}>
+                      <button 
+                        className="btn-join-video" 
+                        style={{ marginTop: '0.5rem' }}
+                        onClick={() => window.open('https://meet.google.com/', '_blank')}
+                      >
                         Join Session
                       </button>
                     </div>
