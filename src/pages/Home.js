@@ -127,7 +127,10 @@ function Home() {
                 <div className="group-actions">
                   <button 
                     className="btn-join-group"
-                    onClick={() => toggleJoin(group.id)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleJoin(group.id);
+                    }}
                   >
                     {group.joined ? '✓ Joined' : 'Join Group'}
                   </button>

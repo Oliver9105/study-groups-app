@@ -11,13 +11,17 @@ function Profile() {
   });
   const [darkMode, setDarkMode] = useState(false);
 
+  const [isAddingSubject, setIsAddingSubject] = useState(false);
+  const [newSubject, setNewSubject] = useState('');
+
   const handleAddSubject = () => {
-    const subject = prompt('Enter subject name:');
-    if (subject && subject.trim()) {
+    if (newSubject.trim()) {
       dispatch({
         type: 'ADD_SUBJECT',
-        payload: subject.trim()
+        payload: newSubject.trim()
       });
+      setNewSubject('');
+      setIsAddingSubject(false);
     }
   };
 
@@ -122,9 +126,35 @@ function Profile() {
             <div className="timeline-item">
               <div className="timeline-dot"></div>
               <div className="session-info">
-                <button className="btn-join-group" onClick={handleAddSubject}>
-                  + Add Subject
-                </button>
+                {isAddingSubject ? (
+                  <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                    <input
+                      type="text"
+                      value={newSubject}
+                      onChange={(e) => setNewSubject(e.target.value)}
+                      placeholder="Enter subject name"
+                      autoFocus
+                      style={{
+                        flex: 1,
+                        padding: '0.5rem',
+                        background: 'rgba(255,255,255,0.1)',
+                        color: 'white',
+                        border: '1px solid rgba(255,255,255,0.3)',
+                        borderRadius: '4px'
+                      }}
+                    />
+                    <button className="btn-join-group" onClick={handleAddSubject}>
+                      Add
+                    </button>
+                    <button className="btn-dismiss" onClick={() => setIsAddingSubject(false)}>
+                      Cancel
+                    </button>
+                  </div>
+                ) : (
+                  <button className="btn-join-group" onClick={() => setIsAddingSubject(true)}>
+                    + Add Subject
+                  </button>
+                )}
               </div>
             </div>
           </div>
