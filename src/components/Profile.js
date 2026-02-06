@@ -1,199 +1,200 @@
-import React, { useState, useEffect } from "react";
-import "../App.css";
+import React, { useState } from 'react';
+import { useApp } from '../context/AppContext';
 
 function Profile() {
-  const [profiles, setProfiles] = useState([]);
-  const [name, setName] = useState("");
-  const [selectedSubjects, setSelectedSubjects] = useState([]);
-  const [availability, setAvailability] = useState("");
-  const [subjects, setSubjects] = useState([]);
-  const [error, setError] = useState("");
+  const { state, dispatch } = useApp();
+  const [formData, setFormData] = useState({
+    name: state.user.name || 'Jane Smith',
+    email: state.user.email || '',
+    bio: state.user.bio || 'Junior CS Major @ Stanford • Member since 2026',
+    university: state.user.university || 'Stanford'
+  });
+  const [darkMode, setDarkMode] = useState(false);
 
-  const fetchSubjects = async () => {
-    try {
-      const response = await fetch(
-        "https://studygroups-json-server-1.onrender.com/subjects"
-      );
-      const data = await response.json();
-      setSubjects(data);
-    } catch (error) {
-      console.error("Error fetching subjects:", error);
-    }
+  const handleAddSubject = () => {
+    // Subject adding functionality would go here
   };
 
-  const fetchProfiles = async () => {
-    try {
-      const response = await fetch(
-        "https://studygroups-json-server-1.onrender.com/profiles"
-      );
-      const data = await response.json();
-      setProfiles(data);
-    } catch (error) {
-      console.error("Error fetching profiles:", error);
-    }
-  };
-
-  const fetchGroups = async () => {
-    try {
-      const response = await fetch(
-        "https://studygroups-json-server-1.onrender.com/groups"
-      );
-      return await response.json();
-    } catch (error) {
-      console.error("Error fetching groups:", error);
-      return [];
-    }
-  };
-
-  const handleSave = async () => {
-    if (!name || !selectedSubjects.length || !availability) {
-      setError("All fields are required.");
-      return;
-    }
-    setError("");
-    const newProfile = { name, subjects: selectedSubjects, availability };
-    try {
-      const response = await fetch(
-        "https://studygroups-json-server-1.onrender.com/profiles",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newProfile),
-        }
-      );
-
-      if (response.ok) {
-        const addedProfile = await response.json();
-        setProfiles([...profiles, addedProfile]);
-        setName("");
-        setSelectedSubjects([]);
-        setAvailability("");
-
-        console.log("Profile added:", addedProfile);
-        await addToGroups(addedProfile);
-
-        console.log("Profile saved and added to group");
-      } else {
-        console.error("Failed to save profile");
+  const handleRemoveSubject = (subjectToRemove) => {
+    dispatch({
+      type: 'SET_USER',
+      payload: {
+        ...state.user,
+        subjects: state.user.subjects.filter(subject => subject !== subjectToRemove)
       }
-    } catch (error) {
-      console.error("Error saving profile:", error);
-    }
+    });
   };
 
-  const addToGroups = async (profile) => {
-    try {
-      const groups = await fetchGroups();
-      profile.subjects.forEach(async (subject) => {
-        let group = groups.find(
-          (g) =>
-            g.category === subject && g.availability === profile.availability
-        );
-        if (!group) {
-          const newGroup = {
-            name: `${subject} Group ${profile.availability}`,
-            category: subject,
-            availability: profile.availability,
-            members: [profile],
-          };
-          const groupResponse = await fetch(
-            "https://studygroups-json-server-1.onrender.com/groups",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(newGroup),
-            }
-          );
-          group = await groupResponse.json();
-          console.log("New group created:", group);
-        } else {
-          group.members.push(profile);
-          await fetch(
-            `https://studygroups-json-server-1.onrender.com/groups/${group.id}`,
-            {
-              method: "PUT",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(group),
-            }
-          );
-          console.log("Profile added to existing group:", group);
-        }
-      });
-    } catch (error) {
-      console.error("Error adding profile to groups:", error);
-    }
+  const getInitials = (name) => {
+    return name ? name.split(' ').map(n => n[0]).join('').toUpperCase() : 'JS';
   };
 
-  useEffect(() => {
-    fetchProfiles();
-    fetchSubjects();
-  }, []);
-
-  const handleSubjectChange = (event) => {
-    const value = Array.from(
-      event.target.selectedOptions,
-      (option) => option.value
-    );
-    setSelectedSubjects(value);
-  };
+  const achievements = [
+    { name: '100 Club', earned: true, color: '#dc2626', shape: 'hexagon' },
+    { name: 'Python Pro', earned: true, color: '#ea580c', shape: 'hexagon' },
+    { name: 'Python Pro', earned: true, color: '#16a34a', shape: 'hexagon' },
+    { name: 'Top Contributor', earned: true, color: '#2563eb', shape: 'hexagon' },
+    { name: 'Early Bird', earned: false, color: '#6b7280', shape: 'hexagon' }
+  ];
 
   return (
-    <div className="container">
-      <h2>Profiles</h2>
-      <div>
-        <label>
-          Name:
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </label>
+    <div className="groups-dashboard">
+      {/* Stats Cards */}
+      <div className="dashboard-stats">
+        <div className="stat-card-dashboard">
+          <div className="stat-icon-dash">👥</div>
+          <div className="stat-content">
+            <div className="stat-label">Groups Joined</div>
+            <div className="stat-number-dash">8</div>
+          </div>
+        </div>
+        <div className="stat-card-dashboard">
+          <div className="stat-icon-dash">📚</div>
+          <div className="stat-content">
+            <div className="stat-label">Study Hours</div>
+            <div className="stat-number-dash">42</div>
+          </div>
+        </div>
+        <div className="stat-card-dashboard">
+          <div className="stat-icon-dash">🎯</div>
+          <div className="stat-content">
+            <div className="stat-label">Recent Sessions</div>
+            <div className="stat-number-dash">4</div>
+          </div>
+        </div>
       </div>
-      <div>
-        <label>
-          Subjects:
-          <select
-            multiple
-            value={selectedSubjects}
-            onChange={handleSubjectChange}
-          >
-            {subjects.map((subject) => (
-              <option key={subject.id} value={subject.name}>
-                {subject.name}
-              </option>
-            ))}
-          </select>
-        </label>
-      </div>
-      <div>
-        <label>
-          Availability:
-          <input
-            type="text"
-            value={availability}
-            onChange={(e) => setAvailability(e.target.value)}
-          />
-        </label>
-      </div>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <button onClick={handleSave}>Save Profile</button>
 
-      <h3>Existing Profiles:</h3>
-      <ul>
-        {profiles.map((profile) => (
-          <li key={profile.id}>
-            {profile.name} - Subjects: {profile.subjects.join(", ")} -
-            Availability: {profile.availability}
-          </li>
-        ))}
-      </ul>
+      {/* Main Content */}
+      <div className="dashboard-content">
+        {/* Profile Info */}
+        <div className="dashboard-section">
+          <h3>Profile Information</h3>
+          <div className="group-card-dashboard">
+            <div className="group-header">
+              <div className="group-avatar" style={{ position: 'relative', cursor: 'pointer' }} onClick={() => document.getElementById('avatar-upload').click()}>
+                {getInitials(formData.name)}
+                <div style={{ position: 'absolute', bottom: '-5px', right: '-5px', background: '#4f46e5', borderRadius: '50%', width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px' }}>📷</div>
+                <input 
+                  id="avatar-upload" 
+                  type="file" 
+                  accept="image/*" 
+                  style={{ display: 'none' }} 
+                  onChange={(e) => {
+                    if (e.target.files[0]) {
+                      alert('Profile picture updated!');
+                    }
+                  }}
+                />
+              </div>
+              <div className="group-info">
+                <h4>{formData.name}</h4>
+                <p>{formData.bio}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Subjects */}
+        <div className="dashboard-section">
+          <h3>My Subjects</h3>
+          <div className="sessions-timeline">
+            {state.user.subjects.map((subject, index) => (
+              <div key={index} className="timeline-item">
+                <div className="timeline-dot active"></div>
+                <div className="session-info">
+                  <h4>{subject}</h4>
+                  <button 
+                    onClick={() => handleRemoveSubject(subject)}
+                    className="btn-dismiss"
+                    style={{ marginTop: '0.5rem' }}
+                  >
+                    Remove
+                  </button>
+                </div>
+              </div>
+            ))}
+            <div className="timeline-item">
+              <div className="timeline-dot"></div>
+              <div className="session-info">
+                <button className="btn-join-group" onClick={handleAddSubject}>
+                  + Add Subject
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Achievements */}
+        <div className="dashboard-section">
+          <h3>Achievement Badges</h3>
+          <div className="groups-grid-dashboard">
+            {achievements.slice(0, 4).map((badge, index) => (
+              <div key={index} className="group-card-dashboard">
+                <div className="group-header">
+                  <div 
+                    className="group-avatar"
+                    style={{ backgroundColor: badge.earned ? badge.color : '#6b7280' }}
+                  >
+                    🏆
+                  </div>
+                  <div className="group-info">
+                    <h4>{badge.name}</h4>
+                    <p>{badge.earned ? 'Earned' : 'Locked'}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Settings */}
+        <div className="dashboard-section">
+          <h3>Settings</h3>
+          <div className="group-card-dashboard">
+            <div className="group-header">
+              <div className="group-info" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+                <h4>Dark Mode</h4>
+                <label style={{ 
+                  position: 'relative',
+                  display: 'inline-block',
+                  width: '60px',
+                  height: '34px'
+                }}>
+                  <input 
+                    type="checkbox" 
+                    checked={darkMode} 
+                    onChange={(e) => setDarkMode(e.target.checked)}
+                    style={{ opacity: 0, width: 0, height: 0 }}
+                  />
+                  <span style={{
+                    position: 'absolute',
+                    cursor: 'pointer',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    backgroundColor: darkMode ? '#4f46e5' : '#ccc',
+                    transition: '.4s',
+                    borderRadius: '34px'
+                  }}>
+                    <span style={{
+                      position: 'absolute',
+                      content: '',
+                      height: '26px',
+                      width: '26px',
+                      left: darkMode ? '30px' : '4px',
+                      bottom: '4px',
+                      backgroundColor: 'white',
+                      transition: '.4s',
+                      borderRadius: '50%'
+                    }}></span>
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
