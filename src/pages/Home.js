@@ -4,7 +4,6 @@ import { initialGroups } from '../mockData';
 import CreateGroup from '../components/CreateGroup';
 
 function Home() {
-  const { state } = useApp();
   const [groups, setGroups] = useState(initialGroups);
   const [showCreateForm, setShowCreateForm] = useState(false);
 
