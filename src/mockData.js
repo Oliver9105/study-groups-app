@@ -12,9 +12,9 @@ export const initialGroups = [
       { name: "Maria Garcia", role: "Member", avatar: "MG" }
     ],
     resources: [
-      { type: "PDF", name: "React Cheat Sheet", link: "#" },
-      { type: "Link", name: "Official Docs", link: "https://react.dev" },
-      { type: "PDF", name: "Hooks Guide", link: "#" }
+      { type: "Link", name: "React Tutorial", link: "https://www.w3schools.com/react/" },
+      { type: "Link", name: "React Hooks", link: "https://www.w3schools.com/react/react_hooks.asp" },
+      { type: "Link", name: "React useEffect", link: "https://www.w3schools.com/react/react_useeffect.asp" }
     ],
     time: "4:00 PM",
     date: "Today",
@@ -33,8 +33,9 @@ export const initialGroups = [
       { name: "Tom Brown", role: "Member", avatar: "TB" }
     ],
     resources: [
-      { type: "PDF", name: "Pandas Cheat Sheet", link: "#" },
-      { type: "Link", name: "NumPy Documentation", link: "https://numpy.org" }
+      { type: "Link", name: "Python Tutorial", link: "https://www.w3schools.com/python/" },
+      { type: "Link", name: "NumPy Tutorial", link: "https://www.w3schools.com/python/numpy/" },
+      { type: "Link", name: "Pandas Tutorial", link: "https://www.w3schools.com/python/pandas/" }
     ],
     time: "10:30 AM",
     date: "Tomorrow",
@@ -52,8 +53,9 @@ export const initialGroups = [
       { name: "Ryan Lee", role: "Member", avatar: "RL" }
     ],
     resources: [
-      { type: "PDF", name: "Integration Formulas", link: "#" },
-      { type: "PDF", name: "Practice Problems", link: "#" }
+      { type: "Link", name: "Math Tutorial", link: "https://www.w3schools.com/math/" },
+      { type: "Link", name: "Statistics", link: "https://www.w3schools.com/statistics/" },
+      { type: "Link", name: "Data Science Math", link: "https://www.w3schools.com/datascience/ds_math.asp" }
     ],
     time: "2:00 PM",
     date: "Feb 6th",
@@ -72,8 +74,9 @@ export const initialGroups = [
       { name: "Mike Taylor", role: "Member", avatar: "MT" }
     ],
     resources: [
-      { type: "Link", name: "MDN Async Guide", link: "https://developer.mozilla.org" },
-      { type: "PDF", name: "API Examples", link: "#" }
+      { type: "Link", name: "JavaScript Tutorial", link: "https://www.w3schools.com/js/" },
+      { type: "Link", name: "JS Async/Await", link: "https://www.w3schools.com/js/js_async.asp" },
+      { type: "Link", name: "JS Promises", link: "https://www.w3schools.com/js/js_promise.asp" }
     ],
     time: "5:00 PM",
     date: "Today",
