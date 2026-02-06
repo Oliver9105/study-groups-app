@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
+import CalendarExport from '../components/CalendarExport';
+import Notifications from '../components/Notifications';
+import Chat from '../components/Chat';
 
 function Schedule() {
   const { state, dispatch } = useApp();
@@ -46,6 +49,13 @@ function Schedule() {
 
   return (
     <div className="groups-dashboard">
+      <Chat />
+      
+      {/* Header with Notifications */}
+      <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '1rem' }}>
+        <Notifications />
+      </div>
+      
       {/* Stats Cards */}
       <div className="dashboard-stats">
         <div className="stat-card-dashboard">
@@ -235,6 +245,7 @@ function Schedule() {
                       >
                         Join Session
                       </button>
+                      <CalendarExport session={session} />
                     </div>
                   </div>
                 );

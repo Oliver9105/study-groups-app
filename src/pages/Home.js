@@ -2,11 +2,19 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { initialGroups } from '../mockData';
 import CreateGroup from '../components/CreateGroup';
+import SearchFilter from '../components/SearchFilter';
+import Notifications from '../components/Notifications';
+import Chat from '../components/Chat';
+import StudyProgress from '../components/StudyProgress';
+import { useApp } from '../context/AppContext';
 
 function Home() {
+  const { state } = useApp();
   const navigate = useNavigate();
   const [groups, setGroups] = useState(initialGroups);
   const [showCreateForm, setShowCreateForm] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedSubject, setSelectedSubject] = useState('');
 
   const toggleJoin = (id) => {
     setGroups(prevGroups => 
@@ -18,8 +26,22 @@ function Home() {
 
   const joinedGroupsCount = groups.filter(g => g.joined).length;
 
+  const filteredGroups = groups.filter(group => {
+    const matchesSearch = group.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         group.description.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSubject = !selectedSubject || group.subject === selectedSubject;
+    return matchesSearch && matchesSubject;
+  });
+
   return (
     <div className="groups-dashboard">
+      <Chat />
+      
+      {/* Header with Notifications */}
+      <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '1rem' }}>
+        <Notifications />
+      </div>
+      
       {/* Stats Cards */}
       <div className="dashboard-stats">
         <div className="stat-card-dashboard">
@@ -40,6 +62,8 @@ function Home() {
 
       {/* Main Content */}
       <div className="dashboard-content">
+        <StudyProgress />
+        
         <div className="dashboard-section">
           <h3>Your Schedule</h3>
           <div className="sessions-timeline">
@@ -69,6 +93,14 @@ function Home() {
             </button>
           </div>
           
+          <SearchFilter 
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            selectedSubject={selectedSubject}
+            setSelectedSubject={setSelectedSubject}
+            subjects={state.subjects}
+          />
+          
           {showCreateForm && (
             <div style={{ marginBottom: '2rem' }}>
               <CreateGroup onClose={() => setShowCreateForm(false)} />
@@ -76,7 +108,7 @@ function Home() {
           )}
           
           <div className="groups-grid-dashboard">
-            {groups.slice(0, 4).map(group => (
+            {filteredGroups.slice(0, 4).map(group => (
               <div 
                 key={group.id} 
                 className="group-card-dashboard"

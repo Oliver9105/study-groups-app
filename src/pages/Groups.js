@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { initialGroups } from '../mockData';
+import SearchFilter from '../components/SearchFilter';
+import Notifications from '../components/Notifications';
+import Chat from '../components/Chat';
+import { useApp } from '../context/AppContext';
 
 function Groups() {
+  const { state } = useApp();
   const navigate = useNavigate();
   const [groups, setGroups] = useState(initialGroups);
   const [showNotification, setShowNotification] = useState(true);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedSubject, setSelectedSubject] = useState('');
 
   const toggleJoin = (id) => {
     setGroups(prevGroups => 
@@ -21,8 +28,22 @@ function Groups() {
 
   const availableGroups = groups.filter(g => !g.joined);
 
+  const filteredGroups = availableGroups.filter(group => {
+    const matchesSearch = group.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         group.description.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSubject = !selectedSubject || group.subject === selectedSubject;
+    return matchesSearch && matchesSubject;
+  });
+
   return (
     <div className="groups-dashboard">
+      <Chat />
+      
+      {/* Header with Notifications */}
+      <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '1rem' }}>
+        <Notifications />
+      </div>
+      
       {/* Session Notification */}
       {showNotification && (
         <div className="session-notification">
@@ -105,8 +126,16 @@ function Groups() {
             </div>
           </div>
           
+          <SearchFilter 
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            selectedSubject={selectedSubject}
+            setSelectedSubject={setSelectedSubject}
+            subjects={state.subjects}
+          />
+          
           <div className="groups-grid-dashboard">
-            {availableGroups.slice(0, 2).map(group => (
+            {filteredGroups.slice(0, 2).map(group => (
               <div key={group.id} className="group-card-dashboard" onClick={() => handleCardClick(group.id)}>
                 <div className="group-header">
                   <div className="group-avatar">
