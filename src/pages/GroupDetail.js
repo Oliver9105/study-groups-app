@@ -243,7 +243,18 @@ function GroupDetail() {
                     <div className="resource-name">{resource.name}</div>
                     <div className="resource-type">{resource.type} File</div>
                   </div>
-                  <button className="btn-download">Download</button>
+                  <button 
+                    className="btn-download"
+                    onClick={() => {
+                      if (resource.type === 'Link') {
+                        window.open(resource.link, '_blank');
+                      } else {
+                        alert(`Downloading ${resource.name}...`);
+                      }
+                    }}
+                  >
+                    {resource.type === 'Link' ? 'Open' : 'Download'}
+                  </button>
                 </div>
               )) || (
                 <p className="no-resources">No resources shared yet</p>
