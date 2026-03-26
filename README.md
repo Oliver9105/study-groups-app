@@ -16,7 +16,7 @@ Study Buddy is a minimalist application that demonstrates core React concepts in
 
 ## Screenshot
 
-![Study Buddy App Screenshot](./assets/Screenshot%20from%202024-11-17%2010-40-36.png)
+![Study Buddy App Screenshot](./assets/Screenshot%20from%202026-03-26%2014-46-25.png)
 
 ## Features
 
